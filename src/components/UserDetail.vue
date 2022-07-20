@@ -9,7 +9,8 @@
   </div>
 </template>
 <script>
-
+  import {eventBus} from "../main";
+  
   export default {
     props : {
       name : {
@@ -25,6 +26,11 @@
       sendToParent(){
         this.$emit("data", "randomdata");
       }
+    },
+    created(){
+      eventBus.$on("ageWasEdited", (age) => {
+        this.age = age;
+      })
     }
   }
 </script>
